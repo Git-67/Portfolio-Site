@@ -8,7 +8,7 @@
 }
 
 :root {
-  /* Colors */
+  /* Colors - Dark Mode (default) */
   --bg:          #0a0b0f;
   --bg-surface:  #10121a;
   --bg-card:     #141720;
@@ -33,6 +33,49 @@
   /* Transitions */
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --dur: 0.25s;
+}
+
+/* Light Mode Overrides */
+.light-theme {
+  --bg:          #f8f9fa;
+  --bg-surface:  #ffffff;
+  --bg-card:     #f0f0f0;
+  --bg-card-alt: #e8e8e8;
+  --border:      #d0d0d0;
+  --border-muted:#c8c8c8;
+
+  --accent:      #7c6af7;
+  --accent-2:    #4fa8ff;
+  --accent-grad: linear-gradient(135deg, #7c6af7 0%, #4fa8ff 100%);
+
+  --text-primary:   #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-muted:     #7a7a7a;
+}
+
+/* Light mode overrides for hackathon visual cards */
+.light-theme .hackathon-visual--bblocs {
+  background: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 100%);
+}
+
+.light-theme .hackathon-visual--ctf {
+  background: linear-gradient(135deg, #e0f7f0 0%, #e6fbee 100%);
+}
+
+.light-theme .hackathon-visual--lse {
+  background: linear-gradient(135deg, #fce9f2 0%, #fdedeb 100%);
+}
+
+.light-theme .hackathon-visual--nasa {
+  background: linear-gradient(135deg, #e6e9f5 0%, #ebeef5 100%);
+}
+
+.light-theme .hackathon-visual--imda {
+  background: linear-gradient(135deg, #e6f0f5 0%, #ebf3f7 100%);
+}
+
+.light-theme .hackathon-visual--sentinel {
+  background: linear-gradient(135deg, #e6e9f5 0%, #ebeef5 100%);
 }
 
 html {
@@ -76,7 +119,7 @@ img, svg {
   width: 100%;
   max-width: 1100px;
   margin-inline: auto;
-  padding-inline: 24px;
+  padding-inline: 20px;
 }
 
 .section {
@@ -183,6 +226,15 @@ img, svg {
 .navbar.scrolled {
   background: rgba(10, 11, 15, 0.92);
   border-color: var(--border-muted);
+}
+
+/* Light mode navbar adjustments */
+.light-theme .navbar {
+  background: rgba(248, 249, 250, 0.6);
+}
+
+.light-theme .navbar.scrolled {
+  background: rgba(248, 249, 250, 0.92);
 }
 
 .nav-inner {
@@ -713,11 +765,12 @@ img, svg {
   transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
   display: flex;
   flex-direction: column;
+  box-shadow: 0 0 0 0 rgba(0,0,0,0);
 }
 
 .project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
   border-color: var(--accent);
 }
 
@@ -1123,6 +1176,10 @@ img, svg {
 
   .section {
     padding-block: 72px;
+  }
+
+  .container {
+    padding-inline: 16px; /* Reduced from 24px */
   }
 
   /* Mobile nav */
@@ -1957,6 +2014,41 @@ img, svg {
   transition: transform var(--dur) var(--ease);
 }
 
+/* Theme Toggle Button */
+.theme-toggle {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--dur) var(--ease);
+}
+
+.theme-toggle:hover {
+  background: var(--bg-card);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.theme-toggle svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.theme-icon-dark {
+  color: white;
+}
+
 .certificates-cta:hover .btn-icon-arrow {
   transform: translate(2px, -2px);
 }
@@ -2034,10 +2126,11 @@ img, svg {
 .back-to-top {
   position: fixed;
   bottom: 32px;
-  right: 32px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 90;
-  width: 44px;
-  height: 44px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   border: none;
   background: var(--accent-grad);
@@ -2058,8 +2151,8 @@ img, svg {
 }
 
 .back-to-top svg {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   flex-shrink: 0;
 }
 
@@ -2081,10 +2174,14 @@ img, svg {
 
 @media (max-width: 680px) {
   .back-to-top {
-    bottom: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
+    bottom: 24px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .back-to-top svg {
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -2097,9 +2194,19 @@ img, svg {
   padding: 0;
   justify-content: center;
   flex-shrink: 0;
+  border: none !important;
+  background: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+.btn-icon-only:hover,
+.btn-icon-only:focus-visible {
+  background: transparent !important;
+  color: var(--accent) !important;
+  transform: translateY(-2px);
 }
 
 .btn-icon-only svg {
-  width: 20px;
-  height: 20px;
+  width: 28px;
+  height: 28px;
 }
