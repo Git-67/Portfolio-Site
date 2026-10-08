@@ -1,11 +1,11 @@
 /* ============================================================
-   PORTFOLIO — script.js
+   PORTFOLIO - script.js
    ============================================================ */
 
 'use strict';
 
 /* ----------------------------------------------------------
-   1. NAVBAR — scroll state + active link highlighting
+   1. NAVBAR - scroll state + active link highlighting
    ---------------------------------------------------------- */
 (function initNavbar() {
   const navbar = document.querySelector('.navbar');
@@ -56,7 +56,7 @@
 })();
 
 /* ----------------------------------------------------------
-   3. ACTIVE NAV LINK — highlight based on scroll position
+   3. ACTIVE NAV LINK - highlight based on scroll position
    ---------------------------------------------------------- */
 function highlightActiveNavLink() {
   const sections = document.querySelectorAll('section[id]');
@@ -91,11 +91,11 @@ function highlightActiveNavLink() {
   if (!el) return;
 
   const phrases = [
-    'AI & Data Analytics Student',
-    'Python Enthusiast',
-    'Data Explorer',
-    'Aspiring ML Engineer',
-    'Problem Solver',
+    'Studying AI & Data Analytics',
+    'Love working with Python',
+    'Exploring data insights',
+    'Learning machine learning',
+    'Solving complex problems',
   ];
 
   let phraseIndex = 0;
@@ -143,7 +143,7 @@ function highlightActiveNavLink() {
 })();
 
 /* ----------------------------------------------------------
-   5. SCROLL REVEAL — IntersectionObserver
+   5. SCROLL REVEAL - IntersectionObserver
    ---------------------------------------------------------- */
 (function initScrollReveal() {
   // Add .reveal class to elements we want to animate
@@ -182,11 +182,11 @@ function highlightActiveNavLink() {
 })();
 
 /* ----------------------------------------------------------
-   6. (Contact form removed — links only)
+   6. (Contact form removed - links only)
    ---------------------------------------------------------- */
 
 /* ----------------------------------------------------------
-   7. SMOOTH SCROLL — polyfill for older browsers
+   7. SMOOTH SCROLL - polyfill for older browsers
    ---------------------------------------------------------- */
 (function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -207,7 +207,7 @@ function highlightActiveNavLink() {
 })();
 
 /* ----------------------------------------------------------
-   8. ACTIVE SECTION — update document title on scroll
+   8. ACTIVE SECTION - update document title on scroll
    ---------------------------------------------------------- */
 (function initTitleUpdater() {
   const sectionTitles = {
@@ -309,8 +309,8 @@ function highlightActiveNavLink() {
   const projNote = document.getElementById('projects-note');
   if (projNote) {
     projNote.textContent = isGrad
-      ? 'More projects coming soon — check back regularly!'
-      : `More projects coming soon — currently building cool things in ${studyLabel}!`;
+      ? 'More projects coming soon - check back regularly!'
+      : `More projects coming soon - currently building cool things in ${studyLabel}!`;
   }
 
   // ── 7. Footer year ────────────────────────────────────────
@@ -322,13 +322,64 @@ function highlightActiveNavLink() {
   if (metaDesc) {
     metaDesc.setAttribute(
       'content',
-      `Personal portfolio of Jing Heng — NYP ${studyLabel} AI & Data Analytics${isGrad ? '.' : ' student.'}`
+      `Personal portfolio of Jing Heng, NYP ${studyLabel} AI & Data Analytics${isGrad ? '.' : ' student.'}`
     );
   }
 })();
 
 /* ----------------------------------------------------------
-   10. BACK TO TOP — shows after scrolling past hero
+   9. THEME TOGGLE - light/dark mode with system preference
+   ---------------------------------------------------------- */
+(function initThemeToggle() {
+  const themeToggleBtn = document.querySelector('.theme-toggle');
+  if (!themeToggleBtn) return;
+
+  // Check for saved user preference or use system preference
+  const getCurrentTheme = () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) return savedTheme;
+
+    // Check system preference
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  };
+
+  const setTheme = (theme) => {
+    if (theme === 'dark') {
+      document.documentElement.classList.remove('light-theme');
+      themeToggleBtn.setAttribute('aria-pressed', 'false');
+    } else {
+      document.documentElement.classList.add('light-theme');
+      themeToggleBtn.setAttribute('aria-pressed', 'true');
+    }
+    localStorage.setItem('theme', theme);
+
+    // Update icon visibility
+    const darkIcon = themeToggleBtn.querySelector('.theme-icon-dark');
+    const lightIcon = themeToggleBtn.querySelector('.theme-icon-light');
+    if (darkIcon && lightIcon) {
+      if (theme === 'dark') {
+        darkIcon.style.display = 'block';
+        lightIcon.style.display = 'none';
+      } else {
+        darkIcon.style.display = 'none';
+        lightIcon.style.display = 'block';
+      }
+    }
+  };
+
+  // Initialize theme
+  const currentTheme = getCurrentTheme();
+  setTheme(currentTheme);
+
+  // Toggle theme on button click
+  themeToggleBtn.addEventListener('click', () => {
+    const newTheme = document.documentElement.classList.contains('light-theme') ? 'dark' : 'light';
+    setTheme(newTheme);
+  });
+})();
+
+/* ----------------------------------------------------------
+   10. BACK TO TOP - shows after scrolling past hero
    ---------------------------------------------------------- */
 (function initBackToTop() {
   const btn = document.getElementById('back-to-top');
