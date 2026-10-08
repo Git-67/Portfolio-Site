@@ -24,6 +24,8 @@
   --text-secondary: #a0a8cc;
   --text-muted:     #606485;
 
+  --stripe-color: rgba(255, 255, 255, 0.02);
+
   /* Sizes */
   --nav-h: 68px;
   --radius-sm: 8px;
@@ -51,6 +53,8 @@
   --text-primary:   #1a1a1a;
   --text-secondary: #4a4a4a;
   --text-muted:     #7a7a7a;
+
+  --stripe-color: rgba(0, 0, 0, 0.02);
 }
 
 /* Light mode overrides for hackathon visual cards */
@@ -702,6 +706,21 @@ img, svg {
 .skill-chip--soon {
   border-color: rgba(250, 204, 21, 0.2);
   opacity: 0.75;
+}
+
+.skill-chip--soon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-sm);
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 4px,
+    var(--stripe-color) 4px,
+    var(--stripe-color) 8px
+  );
+  pointer-events: none;
 }
 
 .skill-chip--soon:hover {
@@ -2077,8 +2096,8 @@ img, svg {
     -45deg,
     transparent,
     transparent 8px,
-    rgba(255, 255, 255, 0.012) 8px,
-    rgba(255, 255, 255, 0.012) 16px
+    var(--stripe-color) 8px,
+    var(--stripe-color) 16px
   );
   pointer-events: none;
 }
