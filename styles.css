@@ -747,7 +747,7 @@ img, svg {
 }
 
 /* Responsive */
-@media (max-width: 680px) {
+@media (max-width: 900px) {
   .skill-chip {
     width: 155px;
     min-width: 155px;
@@ -1189,9 +1189,34 @@ img, svg {
   }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 900px) {
   :root {
-    --nav-h: 60px;
+    --nav-h: 70px;
+    font-size: 18px;
+  }
+
+  .theme-toggle {
+    width: 48px;
+    height: 48px;
+  }
+
+  .hero {
+    padding-block: 80px 40px;
+  }
+
+  .btn {
+    padding: 16px 32px;
+    font-size: 1.1rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 1rem;
+    padding: 14px 18px;
+  }
+
+  .experience-grid {
+    grid-template-columns: 1fr;
   }
 
   .section {
@@ -1205,6 +1230,7 @@ img, svg {
   /* Mobile nav */
   .nav-toggle {
     display: flex;
+    padding: 12px;
   }
 
   .nav-links {
@@ -1234,9 +1260,9 @@ img, svg {
 
   .nav-links a {
     display: block;
-    padding: 12px 16px;
+    padding: 14px 18px;
     border-radius: var(--radius-sm);
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .nav-links a:hover {
@@ -1417,7 +1443,7 @@ img, svg {
 }
 
 /* Responsive adjustments for smaller screens */
-@media (max-width: 680px) {
+@media (max-width: 900px) {
   .hackathon-card {
     width: 250px;
     min-width: 250px;
@@ -1425,7 +1451,7 @@ img, svg {
   }
 
   .hackathon-date {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 
   .hackathon-body h3 {
@@ -1545,7 +1571,7 @@ img, svg {
 /* ============================================================
    RESPONSIVE – new sections
    ============================================================ */
-@media (max-width: 680px) {
+@media (max-width: 900px) {
   .exp-card {
     flex-direction: column;
     gap: 14px;
@@ -2232,16 +2258,16 @@ img, svg {
   outline-offset: 3px;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 900px) {
   .back-to-top {
     bottom: 24px;
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
   }
 
   .back-to-top svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
 }
 
