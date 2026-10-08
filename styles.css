@@ -770,7 +770,7 @@ img, svg {
 
 .project-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 12px 32px rgba(124, 106, 247, 0.15);
   border-color: var(--accent);
 }
 
