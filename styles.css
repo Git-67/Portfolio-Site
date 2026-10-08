@@ -769,7 +769,7 @@ img, svg {
 }
 
 .project-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px);
   box-shadow: 0 12px 32px rgba(124, 106, 247, 0.15);
   border-color: var(--accent);
 }
