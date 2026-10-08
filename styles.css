@@ -121,9 +121,9 @@ img, svg {
    ============================================================ */
 .container {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1200px;
   margin-inline: auto;
-  padding-inline: 20px;
+  padding-inline: 16px;
 }
 
 .section {
@@ -1168,6 +1168,7 @@ img, svg {
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
 
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
@@ -1370,12 +1371,41 @@ img, svg {
 }
 
 .hackathons-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
   gap: 24px;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-bottom: 8px;
+  padding-top: 4px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+/* Hide scrollbar for WebKit browsers */
+.hackathons-grid::-webkit-scrollbar {
+  height: 3px;
+}
+
+.hackathons-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.hackathons-grid::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+.hackathons-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
 }
 
 .hackathon-card {
+  flex-shrink: 0;
+  width: 280px;
+  min-width: 280px;
+  scroll-snap-align: start;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -1386,20 +1416,47 @@ img, svg {
   transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
 
-.hackathon-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
-  border-color: var(--accent);
-}
+/* Responsive adjustments for smaller screens */
+@media (max-width: 680px) {
+  .hackathon-card {
+    width: 250px;
+    min-width: 250px;
+    padding: 24px 20px;
+  }
 
-.hackathon-card--winner {
-  border-color: rgba(250, 204, 21, 0.35);
-  background: linear-gradient(160deg, rgba(250, 204, 21, 0.04) 0%, var(--bg-card) 60%);
-}
+  .hackathon-date {
+    font-size: 0.7rem;
+  }
 
-.hackathon-card--winner:hover {
-  border-color: rgba(250, 204, 21, 0.7);
-  box-shadow: 0 12px 32px rgba(250, 204, 21, 0.12);
+  .hackathon-body h3 {
+    font-size: 0.95rem;
+  }
+
+  .hackathon-body p {
+    font-size: 0.83rem;
+  }
+
+  .hv-logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .hv-name {
+    font-size: 0.82rem;
+  }
+
+  .hv-num {
+    font-size: 0.92rem;
+  }
+
+  .hv-label {
+    font-size: 0.64rem;
+  }
+
+  .hv-tags span {
+    font-size: 0.64rem;
+    padding: 2px 8px;
+  }
 }
 
 .hackathon-badge {
@@ -1582,7 +1639,7 @@ img, svg {
 
 .hv-brand {
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 10px;
 }
 
@@ -1757,22 +1814,6 @@ img, svg {
   flex-shrink: 0;
 }
 
-/* SieberrSec logo has a dark bg – show it as-is */
-.hackathon-visual--ctf .hv-logo--img {
-  border-radius: 8px;
-}
-
-/* SIM logo on LSE card – white bg logo needs a slight bg */
-.hackathon-visual--lse .hv-logo--img {
-  background: #fff;
-  padding: 3px;
-  border-radius: 6px;
-}
-
-/* BuildingBloCS logo is on transparent/white */
-.hackathon-visual--bblocs .hv-logo--img {
-  background: transparent;
-}
 
 /* ============================================================
    EDUCATION TIMELINE – org logo in header row
@@ -2132,12 +2173,12 @@ img, svg {
   border-color: rgba(79, 168, 255, 0.25);
 }
 
-/* Light-background logos (NASA, IMDA) need a white pill behind them */
-.hv-logo--light {
-  background: #fff;
-  padding: 3px;
-  border-radius: 6px;
+/* SLEUTH MODE – dark investigation theme */
+.hackathon-visual--ddas {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-color: rgba(0, 200, 83, 0.3);
 }
+
 
 /* ============================================================
    BACK TO TOP BUTTON
